@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Registration Success! </title>
+    <script>
+        var obj_json = {
+            'stack': [{
+                'channel': 'home'
+            }, {
+                'channel': '1'
+            }]
+        }
+        localStorage.setItem('data', JSON.stringify(obj_json))
+        document.addEventListener('DOMContentLoaded', () => {
+            var l = localStorage.getItem('data')
+            var j = JSON.parse(l)
+            document.querySelector("#lol1").innerHTML = l
+            document.querySelector("#lol2").innerHTML = j["stack"][0].channel
+            localStorage.clear()
+        })
+    </script>
+
+</head>
+
+<body>
+
+    <h1 id="lol1">Registration has been Successfull!</h1>
+    <h1 id="lol2">Welcomer {{user}}!</h1>
+    <h2>Wait to redirect!</h2>
+</body>

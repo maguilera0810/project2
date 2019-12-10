@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Chat room </title>
+    <meta name="viewport" content="width=device-width, inicial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style2.css') }}">
+
+    <script type="text/javascript">
+        if (localStorage.getItem('channel') != 'home' && localStorage.getItem('channel') != null) {
+            const c = localStorage.getItem('channel');
+            window.location.href = "/channel/" + c;
+        }
+        if (!localStorage.getItem('register')) {
+
+            window.location.href = "register";
+        } else {
+            window.onload = function() {
+
+                document.querySelector('#nickname').innerHTML = "User: " + localStorage.getItem('register');
+                document.querySelector('#nombre').innerHTML = "User: " + localStorage.getItem('register');
+
+            }
+        }
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelector('#boton').disabled = true;
+
+            document.querySelector('#channel_name').onkeyup = () => {
+                if (document.querySelector('#channel_name').value.length > 0)
+                    document.querySelector('#boton').disabled = false;
+                else
+                    document.querySelector('#boton').disabled = true;
+            };
+
+            document.querySelector("#salir").onclick = () => {
+                localStorage.clear()
+            }
+
+
+        });
+    </script>
+</head>
+
+<body>
+    <header>
+        <ul class="nav justify-content-end nav-pills">
+            <li class="nav-item">
+                <p class="nav-link" id="nombre"></p>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="salir" href="{{url_for('logout')}}">Logout</a>
+            </li>
+        </ul>
+    </header>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+
+                <div class="card">
+                    <div class="card-header">
+                        <h4 id="nickname" class="display-4 ">
+                        </h4>
+                    </div>
+                    <div class="card-body">
+                        <form action="" class="opaco" method="POST">
+
+                            <div class="form-group">
+                                <label for="channel_name">Chanel Name</label>
+                                <input class="form-control" id="channel_name" type="text" placeholder="Channel name" name="channel_name">
+                            </div>
+                            <button class="btn btn-primary" id="boton">Create Canal</button>
+                        </form>
+
+                    </div>
+                    {% if codigo == 420 %}
+                    <div class="alert alert-danger" role="alert">
+
+                        <h2>Erorr</h2>
+                        <h2>Chanel already exist</h2>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card">
+                                <div class="card">
+                                    <div class="card-header">
+
+                                        <h4 class="display-4 ">
+                                            Channels
+                                        </h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <ul class="list-group">
+                                            {%for channel, user,color in channels%}
+                                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                <a class="nav-link" href="channel/{{channel}}">{{channel}}</a>
+                                                <span class="badge badge-primary badge-pill" style="background-color: {{color}};">
+                                                        <h4>{{user}}</h4>
+                                                </span>
+                                            </li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+</body>

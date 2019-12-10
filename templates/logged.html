@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Registration Success! </title>
+    <meta name="viewport" content="width=device-width, inicial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style2.css') }}">
+    <script>
+        /*     setTimeout(function() {
+
+                                                                                            }, 1000); */
+
+        window.onload = setTimeout(function() {
+            localStorage.setItem('register', "{{user}}");
+            localStorage.setItem('color', "{{color}}");
+            window.location.href = '/'
+        }, 1500);
+    </script>
+</head>
+
+<body>
+    <div class="alert alert-info" role="alert">
+        <h1 align="center">Registration has been Successfull!</h1>
+        <h1 align="center">Welcomer {{user}}!</h1>
+        <h2 align="center">Wait to redirect!</h2>
+    </div>
+</body>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Chat room </title>
+    <meta name="viewport" content="width=device-width, inicial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style2.css') }}">
+    <script type="text/javascript">
+        if (localStorage.getItem('register')) {
+
+            window.location.href = "/";
+        }
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelector('#sub').disabled = true;
+
+            document.querySelector('#nickname').onkeyup = () => {
+                if (document.querySelector('#nickname').value.length > 0)
+                    document.querySelector('#sub').disabled = false;
+                else
+                    document.querySelector('#sub').disabled = true;
+            };
+        });
+    </script>
+</head>
+
+<body>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="display-4 ">Sign up</h1>
+                    </div>
+                    <div class="card-body">
+                        <form action="" class="opaco" method="POST">
+
+                            <div class="form-group">
+                                <label for="nickname">First Name</label>
+                                <input class="form-control" id="nickname" type="text" placeholder="Enter your nickname" name="nickname">
+                            </div>
+                            <button id="sub" class="btn btn-primary">Sign up</button>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% if codigo == 69 %}
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="alert alert-danger" role="alert">
+
+                    <h4 class="display-4 ">User already exist</h1>
+                </div>
+
+            </div>
+
+
+
+        </div>
+    </div>
+    </div>
+    {% endif %}
+</body>
