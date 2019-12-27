@@ -28,4 +28,4 @@ Templates directory:
 
 application.py: This file ontains all of the logic on the server side.
 
-personal touch: As a aditional feature, I try to simulate a chat as whatsapp or messenger, by putting message from the current user to the right and messages from other users to the left. In adition, I implemented a logout.
+Personal touch: As an additional feature, I placed the messages of the current user on the right and the messages of other users on the left, and set a random color for each user when logging in. In addition, I implemented a logout.
