@@ -9,7 +9,6 @@ Youtube:
 
 Structure:
 
-the following project is structured as follows:
 Static directory:
     
     -index.js: file. This file contains functions related to the socket connection.
